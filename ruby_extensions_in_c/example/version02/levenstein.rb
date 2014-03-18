@@ -1,5 +1,5 @@
 #!/usr/bin/env ruby
-require "./ext/levenstein_distance"
+require_relative "ext/levenstein_distance"
 
 class String
   include LevensteinDistance
