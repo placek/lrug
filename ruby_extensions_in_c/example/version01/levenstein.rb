@@ -8,7 +8,9 @@ class String
     1.upto(self.length) do |i|
       1.upto(other.length) do |j|
         cost = (self[i - 1] == other[j - 1]) ? 0 : 1
-        distance[i][j] = [distance[i - 1][j] + 1, distance[i][j - 1] + 1, distance[i - 1][j - 1] + cost].min
+        distance[i][j] = [distance[i - 1][j] + 1,
+                          distance[i][j - 1] + 1,
+                          distance[i - 1][j - 1] + cost].min
       end
     end
     distance[self.length][other.length]

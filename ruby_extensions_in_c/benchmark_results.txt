@@ -1,0 +1,35 @@
+$ ruby benchmark.rb --ruby
+Levenstein distance benchmark
+  avg word length: 5.621428571428571
+  attempt: 1, words: 100, combinations: 4950
+          0.580000   0.380000   0.960000 (  0.949640)
+  attempt: 2, words: 200, combinations: 19900
+          2.590000   1.370000   3.960000 (  3.969015)
+  attempt: 3, words: 300, combinations: 44850
+          5.430000   3.300000   8.730000 (  8.735403)
+  attempt: 4, words: 400, combinations: 79800
+         10.960000   5.810000  16.770000 ( 16.772477)
+  attempt: 5, words: 500, combinations: 124750
+         16.470000   9.380000  25.850000 ( 25.859487)
+  attempt: 6, words: 600, combinations: 179700
+         25.990000  13.840000  39.830000 ( 39.842691)
+  attempt: 7, words: 700, combinations: 244650
+         30.260000  18.730000  48.990000 ( 49.011860)
+
+$ ruby benchmark.rb --c
+Levenstein distance benchmark
+  avg word length: 5.621428571428571
+  attempt: 1, words: 100, combinations: 4950
+          0.050000   0.010000   0.060000 (  0.059438)
+  attempt: 2, words: 200, combinations: 19900
+          0.220000   0.050000   0.270000 (  0.269328)
+  attempt: 3, words: 300, combinations: 44850
+          0.430000   0.050000   0.480000 (  0.478186)
+  attempt: 4, words: 400, combinations: 79800
+          1.000000   0.110000   1.110000 (  1.121147)
+  attempt: 5, words: 500, combinations: 124750
+          1.190000   0.190000   1.380000 (  1.369337)
+  attempt: 6, words: 600, combinations: 179700
+          2.820000   0.220000   3.040000 (  3.033939)
+  attempt: 7, words: 700, combinations: 244650
+          2.440000   0.320000   2.760000 (  2.757448)
