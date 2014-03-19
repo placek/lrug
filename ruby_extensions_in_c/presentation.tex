@@ -8,11 +8,14 @@
 \usepackage{color}
 \usepackage{graphicx}
 \usepackage{listings}
+\usepackage{alltt}
 
 \usetheme{default}
 \usecolortheme{beaver}
 \setbeamercolor{title}{bg=white}
 \definecolor{forestgreen}{HTML}{009B55}
+\definecolor{keywords}{HTML}{8A4A0B}
+\lstset{basicstyle=\scriptsize\ttfamily, keywordstyle=\color{keywords}, showstringspaces=false}
 
 \title{Ruby extensions in C}
 \author{Paweł Placzyński}
@@ -149,14 +152,117 @@
   \begin{frame}
     \frametitle{Benchmark -- czysty Ruby}
     \begin{center}
-      \lstinputlisting[firstline=1, lastline=17, basicstyle=\footnotesize]{benchmark_results.txt}
+      \lstinputlisting[firstline=1, lastline=17]{benchmark_results.txt}
     \end{center}
   \end{frame}
 
   \begin{frame}
     \frametitle{Benchmark -- rozszerzenie Ruby w języku C}
     \begin{center}
-      \lstinputlisting[firstline=19, lastline=35, basicstyle=\footnotesize]{benchmark_results.txt}
+      \lstinputlisting[firstline=19, lastline=35]{benchmark_results.txt}
+    \end{center}
+  \end{frame}
+
+  \begin{frame}
+    \frametitle{Benchmark -- kod}
+    \begin{center}
+      \href{https://github.com/placek/lrug/tree/master/ruby\_extensions\_in\_c/example}{github.com/placek/lrug}
+    \end{center}
+  \end{frame}
+
+  \begin{frame}
+    \frametitle{Rozszerzenia Ruby w języku C}
+    \lstinputlisting[language=Ruby, title=\texttt{ext/extconf.rb}]{example/version02/ext/extconf.rb}
+  \end{frame}
+
+  \begin{frame}
+    \frametitle{Rozszerzenia Ruby w języku C}
+    \lstinputlisting[firstline=1, lastline=1, language=C, title=\texttt{ext/levenshtein\_distance.c}]{example/version02/ext/levenshtein_distance.c}
+    \ldots
+    \lstinputlisting[firstline=26, lastline=27, language=C]{example/version02/ext/levenshtein_distance.c}
+    \ldots
+    \lstinputlisting[firstline=78, lastline=86, language=C]{example/version02/ext/levenshtein_distance.c}
+  \end{frame}
+
+  \begin{frame}
+    \frametitle{Rozszerzenia Ruby w języku C}
+    \lstinputlisting[firstline=26, lastline=41, language=C, title=\texttt{ext/levenshtein\_distance.c}]{example/version02/ext/levenshtein_distance.c}
+    \ldots
+  \end{frame}
+
+  \begin{frame}
+    \frametitle{Rozszerzenia Ruby w języku C}
+    Przykład -- funkcje i makra dla klasy String:
+    \begin{alltt}
+      rb\_str\_new(c\_str, length) \\
+      rb\_str\_new2(c\_str) \\
+      rb\_str\_dup(ruby\_string\_object) \\
+      rb\_str\_plus(string\_object\_1, string\_object\_2) \\
+      rb\_str\_times(string\_object\_1, fixnum\_object) \\
+      rb\_str\_substr(string\_object, begin, length) \\
+      rb\_str\_cat(string\_object, c\_str, length) \\
+      rb\_str\_cat2(string\_object, c\_str) \\
+      rb\_str\_append(string\_object\_1, string\_object\_2) \\
+      rb\_str\_concat(string\_object, ruby\_object) \\
+      StringValueCStr(ruby\_object) \\
+      StringValue(ruby\_object) \\
+      RSTRING\_PTR(return\_value) \\
+      RSTRING\_LEN(return\_value)
+    \end{alltt}
+  \end{frame}
+
+  \begin{frame}
+    \frametitle{Rozszerzenia Ruby w języku C}
+    \begin{center}
+      \href{http://www.ruby-doc.org/core-2.0/}{www.ruby-doc.org/core-2.0/}
+
+
+      \href{http://clalance.blogspot.com/2011/01/writing-ruby-extensions-in-c-part-1.html}{clalance.blogspot.com}
+
+
+      \href{http://stackoverflow.com/tags/ruby-c-api/info}{stackoverflow.com/tags/ruby-c-api/info}
+    \end{center}
+  \end{frame}
+
+  \begin{frame}
+    \frametitle{Rozszerzenia Ruby w języku C}
+    \begin{alltt}
+      \$ ls \\
+      extconf.rb  levenshtein\_distance.c \\
+      \$ ruby extconf.rb \\
+      creating Makefile \\
+      \$ make \\
+      compiling levenshtein\_distance.c \\
+      linking shared-object levenshtein\_distance.so \\
+      \$ ls \\
+      extconf.rb  levenshtein\_distance.c  levenshtein\_distance.o  levenshtein\_distance.so  Makefile
+    \end{alltt}
+  \end{frame}
+
+  \begin{frame}
+    \frametitle{Rozszerzenia Ruby w języku C}
+    \begin{alltt}
+      \$ ls \\
+      extconf.rb  levenshtein\_distance.c  levenshtein\_distance.o  levenshtein\_distance.so  Makefile \\
+      \$ irb -r `pwd`/levenshtein\_distance \\
+      >> include LevenshteinDistance \\
+      => Object \\
+      >> leven("test", "tost") \\
+      => 1
+    \end{alltt}
+  \end{frame}
+
+  \begin{frame}
+    \begin{center}
+      \href{https://github.com/seattlerb/rubyinline}{github.com/seattlerb/rubyinline} \\
+      1.8.2 only :(
+    \end{center}
+    \lstinputlisting[language=Ruby]{inline_ruby_example.rb}
+  \end{frame}
+
+  \begin{frame}
+    \begin{center}
+      {\Huge pytania?}
     \end{center}
   \end{frame}
 

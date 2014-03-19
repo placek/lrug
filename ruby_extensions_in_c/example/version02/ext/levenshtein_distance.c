@@ -15,15 +15,15 @@ long minimum(long a, long b, long c)
 }
 
 /**
- * @brief This function calculatesthe Levenstein distance.
+ * @brief This function calculates the Levenshtein distance.
  * The arguments should be members of String ruby class.
  * Raises exception if not.
  * @author placek@ragnarson.com
  * @param left the first word
  * @param right the second word
- * @return Levenstein distance between two words
+ * @return Levenshtein distance between two words
  */
-static VALUE levenstein_distance(int argc, VALUE* argv)
+static VALUE levenshtein_distance(int argc, VALUE* argv)
 {
   /* declarations */
   VALUE v_left, v_right;
@@ -77,9 +77,10 @@ static VALUE levenstein_distance(int argc, VALUE* argv)
   return INT2NUM(result);
 }
 
-VALUE L;
-void Init_levenstein_distance()
+VALUE LD;
+void Init_levenshtein_distance()
 {
-  L = rb_define_module("LevensteinDistance");
-  rb_define_private_method(L, "leven", levenstein_distance, -1);
+  LD = rb_define_module("LevenshteinDistance");
+  rb_define_private_method(LD, "leven",
+                           levenshtein_distance, -1);
 }

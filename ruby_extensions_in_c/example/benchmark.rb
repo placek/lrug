@@ -5,9 +5,9 @@ lipsum = %w(lorem ipsum dolor sit amet consectetur adipiscing elit nullam tortor
 
 # arguments parsing
 if ARGV.first == "--c"
-  require_relative "version02/levenstein.rb"
+  require_relative "version02/levenshtein.rb"
 elsif ARGV.first == "--ruby"
-  require_relative "version01/levenstein.rb"
+  require_relative "version01/levenshtein.rb"
 else
   puts "usage:\n  #{$0} OPTIONS\n\nOPTIONS:\n  --ruby\trun benchmark with pure Ruby code\n  --c   \trun benchmark with C extension"
   exit(0)
@@ -17,7 +17,7 @@ require "ruby-prof"
 
 # small stats
 count = lipsum.count
-puts "Levenstein distance benchmark"
+puts "Levenshtein distance benchmark"
 puts "  avg word length: #{lipsum.map(&:length).reduce(:+).to_f / count}"
 
 # benchmark incrementing amount of words to compare
@@ -27,7 +27,7 @@ Benchmark.benchmark do |bm|
       sample = lipsum[0, n * 100]
       pairs = sample.combination(2).to_a
       bm.report("  attempt: #{n}, words: #{sample.count}, combinations: #{pairs.count}\n\t") do
-        pairs.map { |pair| pair.first.levenstein_distance(pair.last) }
+        pairs.map { |pair| pair.first.levenshtein_distance(pair.last) }
       end
     end
     printer = RubyProf::GraphHtmlPrinter.new(result)

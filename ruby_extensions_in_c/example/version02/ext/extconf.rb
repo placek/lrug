@@ -5,4 +5,4 @@ def error msg
   abort
 end
 
-create_makefile("levenstein_distance")
+create_makefile("levenshtein_distance")
