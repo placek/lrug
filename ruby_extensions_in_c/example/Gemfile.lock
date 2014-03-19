@@ -1,0 +1,11 @@
+GEM
+  remote: http://rubygems.org/
+  specs:
+    ruby-prof (0.14.2)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  bundler
+  ruby-prof
