@@ -31,8 +31,8 @@ Benchmark.benchmark do |bm|
       end
     end
     printer = RubyProf::GraphHtmlPrinter.new(result)
-    printer.print(File.new("profiles/#{ARGV.first.gsub(/-/, "")}_profile%02d.html" % [n], "w"), min_percent: 2)
+    printer.print(File.new("#{ARGV.first.gsub(/-/, "")}_profile%02d.html" % [n], "w"), min_percent: 2)
     printer = RubyProf::CallStackPrinter.new(result)
-    printer.print(File.new("profiles/#{ARGV.first.gsub(/-/, "")}_call_stack%02d.html" % [n], "w"), min_percent: 2)
+    printer.print(File.new("#{ARGV.first.gsub(/-/, "")}_call_stack%02d.html" % [n], "w"), min_percent: 2)
   end
 end
