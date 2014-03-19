@@ -1,7 +1,14 @@
 *.swp
 *.swo
 *~
-Makefile
 *.o
 *.so
+*.aux
+*.log
+*.nav
+*.out
+*.snm
+*.toc
+*.pdf
+Makefile
 .bundle
